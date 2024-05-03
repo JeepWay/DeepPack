@@ -6,21 +6,23 @@ This repository contains a Pytorch **unofficial** implementation of the algorith
 ## Modified CNN Architecture
 Because the dimension of the proposed concatenated state (W×2H) inputted to the model doesn't satisfyied the dimension requirements of the CNN architecture mentioned in the paper, thus, this repository use the modified CNN architecture to train. 
 
+:arrow_down: CNN architecture for 4*4 bin size
+<p align="left">
+<img src="img/CNN_4x4.jpg" alt="CNN for 4*4 bin size" height="40%" width="70%">
+</p>
+
 :arrow_down: CNN architecture for 5*5 bin size
 <p align="left">
 <img src="img/CNN_5x5.jpg" alt="CNN for 5*5 bin size" height="40%" width="70%">
 </p>
 
-:arrow_down: CNN architecture for 4*4 bin size
-<p align="left">
-<img src="img/CNN_4x4.jpg" alt="CNN for 5*5 bin size" height="40%" width="70%">
-</p>
-
 
 ## Dataset 
-The all training and testing dataset are generated from `generate_train.py` and `generate_test.py` with specific random seed, and `data` folder contain only training and testing data for 5x5 bin size, to reduce the size of the `data` folder.
+The all training and testing dataset are generated from `generate_train.py` with random seed 777 and `generate_test.py` with random seed 666.
 
-If you want to see the training and testing data for 4x4 or 3x3 bin size, you can run `generate_train.py` and `generate_test.py` to generate it.
+To reduce the size of this repository, we don't upload the training and testing data except for 4x4 bin size with retangular item.
+
+If you want to see the training and testing data, you can run `generate_train.py` and `generate_test.py` to generate it.
 
 
 ## Task type
@@ -43,11 +45,11 @@ If you want to see the training and testing data for 4x4 or 3x3 bin size, you ca
 
 
 ## Installation
-* if you want to use your own env, then run:
+* If you want to use your own env, then run:
     ```
     pip install -r install/requirements.txt
     ```
-* if you want to create new env, then run:
+* If you want to create new env, then run:
     ```
     conda env create -f install/environment.yml
     ```
@@ -60,25 +62,31 @@ If you want to see the training and testing data for 4x4 or 3x3 bin size, you ca
 ## Usage example
 * `run.bat`
     * Execute the command in the `.bat` file, including training and testing part.
-* `python main.py` 
+* `python main.py --task rectangular --bin_w 4 --bin_h 4 --iterations 300000` 
     * Execute to train the doubleDQN model.
-* `python test.py` 
+* `python test.py --task rectangular --bin_w 4 --bin_h 4 --sequence_type type1 --max_sequence 4  --iterations 5000` 
     * Execute to test the result of the trained doubleDQN model.
 
 
+## Result Folder
+The all training and testing result and log will be placed in `(items_name)_(bin_w)x(bin_h)_result` folder. 
 
-## Results Folder
-The all training and testing result and log will be placed in `(items_name)_(bin_w)_(bin_h)_result` folder.
+To reduce the size of this repository, we don't upload the result folders.
 
 ```bash
-├── (itemsName)_(binW)_(binH)_result
+├── (itemsName)_(binW)x(binH)_result
 |   ├── img
 |   |   ├── train_record.png
+|   |   ├── test_record.png
+|   |   ├── test_type*.gif
 |   ├── test
 |   |   ├── log.txt
 |   ├── train
 |   |   ├── log.txt
+|   ├── hyperparameter.txt
+|   ├── (itemsName)_(binW)x(binH).pt
 ```
+
 
 ## Experimental Results
 ### Train
@@ -124,3 +132,6 @@ We guess the the training data in the original paper contain the specific test s
 ## References
 * [Deep-Pack: A Vision-Based 2D Online Bin Packing Algorithm with Deep Reinforcement Learning](https://ieeexplore.ieee.org/document/8956393)
 
+* [TD3 github](https://github.com/sfujim/TD3)
+
+* [RainbowDQN github](https://github.com/Kaixhin/Rainbow)
