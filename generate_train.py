@@ -33,12 +33,12 @@ if __name__ == '__main__':
     '''tarin data'''
     # generate_unit_square(size=3, iterations=200000, type='train')
     generate_unit_square(size=4, iterations=200000, type='train')
-    # generate_unit_square(size=5, iterations=300000, type='train')
+    generate_unit_square(size=5, iterations=300000, type='train')
 
     # generate_rectangular(size=3, iterations=300000, type='train')
     generate_rectangular(size=4, iterations=300000, type='train')
-    # generate_rectangular(size=5, iterations=350000, type='train')
+    generate_rectangular(size=5, iterations=350000, type='train')
 
     # generate_square(size=3, iterations=300000, type='train')
     generate_square(size=4, iterations=300000, type='train')
-    # generate_square(size=5, iterations=350000, type='train')
+    generate_square(size=5, iterations=350000, type='train')

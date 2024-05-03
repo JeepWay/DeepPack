@@ -1,18 +1,11 @@
 __pycache__
 backup_result
+*_result
 try.py
 result.xlsx
 
-unit_square_4x4_result/train/*
-unit_square_4x4_result/test/*
-square_4x4_result/train/*
-square_4x4_result/test/*
-rectangular_4x4_result/train/*
-rectangular_4x4_result/test/*
-
-unit_square_5x5_result/train/*
-unit_square_5x5_result/test/*
-square_5x5_result/train/*
-square_5x5_result/test/*
-rectangular_5x5_result/train/*
-rectangular_5x5_result/test/*
+data/test_*
+data/train_unit_*
+data/train_square_*
+data/train_rectangular_3_*
+data/train_rectangular_5_*
