@@ -69,8 +69,6 @@ if __name__ == '__main__':
         status = 1
         rewards = 0
         bin_state = torch.from_numpy(np.ones((args.bin_w, args.bin_h), dtype=int))
-        if (iter==1):
-            bin_list.append(copy.deepcopy(bin_state))
 
         while(status == 1):
             ''' get item and state of item '''
@@ -118,6 +116,8 @@ if __name__ == '__main__':
                     compactness = cluster_size / bounding_box_size
                     reward = cluster_size * compactness
             else:
+                x = action // args.bin_h
+                y = action % args.bin_h
                 reward = 0
             # additional reward for last step
             if (sequence_count+1 == (args.max_sequence)) or (torch.sum(bin_state) == 0):
@@ -125,8 +125,8 @@ if __name__ == '__main__':
                 reward += args.K * PE
             step_rewards.append(reward)
             rewards += reward
-            if (iter==1):
-                bin_list.append(copy.deepcopy(bin_state))
+            if (iter==0):
+                bin_list.append((copy.deepcopy(bin_state), x, y, width, height))
 
             ''' get next item and state of next item '''
             if (iter * args.max_sequence + sequence_count + 1) == len(items):
@@ -202,7 +202,8 @@ if __name__ == '__main__':
 
     ''' plot bin images '''
     for i in range(len(bin_list)):
-        utils.bin2image(1-bin_list[i])
+        bin_state, x, y, width, height = bin_list[i]
+        utils.bin2image(1-bin_state, x, y, item_w=width, item_h=height)
         import os
         if not os.path.isdir(f"{dir_name}/img/{args.sequence_type}"):
             os.mkdir(f"{dir_name}/img/{args.sequence_type}")

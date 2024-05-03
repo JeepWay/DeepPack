@@ -60,12 +60,14 @@ def moving_average(lst, move):
     return moving_averages
 
 
-def bin2image(state):
+def bin2image(state, x, y, item_w, item_h):
     import matplotlib.pyplot as plt
     plt.imshow(state, cmap='gray', origin='upper')
     plt.title(f'{state.shape[0]}x{state.shape[1]} bin', fontsize=20)
     plt.xlabel('height', fontsize=16)
     plt.ylabel('width', fontsize=16)
+    plt.scatter(-0.5+y, -0.5+x, s=250, color='red', marker='o')
+    plt.text(-0.5, -1, f'item:{item_w}x{item_h}', fontsize=18, color='red', ha='center', va='center')
     plt.xticks(np.arange(-0.5, state.shape[1]), np.arange(0, state.shape[1]+1))
     plt.yticks(np.arange(-0.5, state.shape[0]), np.arange(0, state.shape[0]+1))
     plt.grid(True, which='both', color='gray', linestyle='-', linewidth=2)
@@ -82,7 +84,7 @@ def images_to_gif(image_folder, gif_path, fps=1):
         image_path = os.path.join(image_folder, image)
         frames.append(imageio.v2.imread(image_path))
     # Save as gif
-    imageio.mimsave(gif_path, frames, fps=1, loop=0, loop_delay=5)
+    imageio.mimsave(gif_path, frames, fps=0.6, loop=0, loop_delay=7)
     
 
 if __name__ == '__main__':
