@@ -1,4 +1,5 @@
-# Deep-Pack in Pytorch
+# Deep-Pack in PyTorch
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/JeepWay/DeepPack/blob/main/LICENSE)  
 
 This repository contains a Pytorch **unofficial** implementation of the algorithm presented in the paper [Deep-Pack: A Vision-Based 2D Online Bin Packing Algorithm with Deep Reinforcement Learning](https://ieeexplore.ieee.org/document/8956393)
 
@@ -6,14 +7,14 @@ This repository contains a Pytorch **unofficial** implementation of the algorith
 ## Modified CNN Architecture
 Because the dimension of the proposed concatenated state (W×2H) inputted to the model doesn't satisfyied the dimension requirements of the CNN architecture mentioned in the paper, thus, this repository use the modified CNN architecture to train. 
 
-:arrow_down: CNN architecture for 4*4 bin size
+:arrow_down: CNN architecture for 4x4 bin size
 <p align="left">
-<img src="img/CNN_4x4.jpg" alt="CNN for 4*4 bin size" height="40%" width="70%">
+<img src="img/CNN_4x4.jpg" alt="CNN for 4x4 bin size" height="40%" width="100%">
 </p>
 
-:arrow_down: CNN architecture for 5*5 bin size
+:arrow_down: CNN architecture for 5x5 bin size
 <p align="left">
-<img src="img/CNN_5x5.jpg" alt="CNN for 5*5 bin size" height="40%" width="70%">
+<img src="img/CNN_5x5.jpg" alt="CNN for 5x5 bin size" height="40%" width="100%">
 </p>
 
 
@@ -61,7 +62,7 @@ If you want to see the training and testing data, you can run `generate_train.py
 
 ## Usage example
 * `run.bat`
-    * Execute the command in the `.bat` file, including training and testing part.
+    * Execute the command in the `.bat` file, including training and testing parts.
 * `python main.py --task rectangular --bin_w 4 --bin_h 4 --iterations 300000` 
     * Execute to train the doubleDQN model.
 * `python test.py --task rectangular --bin_w 4 --bin_h 4 --sequence_type type1 --max_sequence 4  --iterations 5000` 
@@ -94,44 +95,72 @@ We only show the result of 4x4 and 5x5 bin size, just like the original paper. I
 
 We plot the training curves with moving average (window size 50).
 
-:arrow_down: training result of 4*4 bin size
-| loss                                                                                                  | reward                                                                                                   | PE                                                                                                  |
-| ----------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| ![unit_square_4x4](unit_square_4x4_result/img/iterations_training_loss.png) | ![unit_square_4x4](unit_square_4x4_result/img/iterations_training_rewards.png) | ![unit_square_4x4](unit_square_4x4_result/img/iterations_training_PE.png) |
-| ![square_4x4](square_4x4_result/img/iterations_training_loss.png)           | ![square_4x4](square_4x4_result/img/iterations_training_rewards.png)           | ![square_4x4](square_4x4_result/img/iterations_training_PE.png)           |
-| ![rectangular_4x4](rectangular_4x4_result/img/iterations_training_loss.png) | ![rectangular_4x4](rectangular_4x4_result/img/iterations_training_rewards.png) | ![rectangular_4x4](rectangular_4x4_result/img/iterations_training_PE.png) |
+#### Training result of 4x4 bin size
+| loss                                                                            | reward                                                                             | PE                                                                            |
+| ------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| ![unit_square_4x4](img/unit_square_4x4_result/img/iterations_training_loss.png) | ![unit_square_4x4](img/unit_square_4x4_result/img/iterations_training_rewards.png) | ![unit_square_4x4](img/unit_square_4x4_result/img/iterations_training_PE.png) |
+| ![square_4x4](img/square_4x4_result/img/iterations_training_loss.png)           | ![square_4x4](img/square_4x4_result/img/iterations_training_rewards.png)           | ![square_4x4](img/square_4x4_result/img/iterations_training_PE.png)           |
+| ![rectangular_4x4](img/rectangular_4x4_result/img/iterations_training_loss.png) | ![rectangular_4x4](img/rectangular_4x4_result/img/iterations_training_rewards.png) | ![rectangular_4x4](img/rectangular_4x4_result/img/iterations_training_PE.png) |
 
 
-:arrow_down: training result of 5*5 bin size
-| loss | reward | PE  |
-| ---- | ------ | --- |
-|      |        |     |
-
-
-
-
-
-
-
-
-
-
+#### Training result of 5x5 bin size
+| loss                                                                            | reward                                                                             | PE                                                                            |
+| ------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| ![unit_square_5x5](img/unit_square_5x5_result/img/iterations_training_loss.png) | ![unit_square_5x5](img/unit_square_5x5_result/img/iterations_training_rewards.png) | ![unit_square_5x5](img/unit_square_5x5_result/img/iterations_training_PE.png) |
+| ![square_5x5](img/square_5x5_result/img/iterations_training_loss.png)           | ![square_5x5](img/square_5x5_result/img/iterations_training_rewards.png)           | ![square_5x5](img/square_5x5_result/img/iterations_training_PE.png)           |
+| ![rectangular_5x5](img/rectangular_5x5_result/img/iterations_training_loss.png) | ![rectangular_5x5](img/rectangular_5x5_result/img/iterations_training_rewards.png) | ![rectangular_5x5](img/rectangular_5x5_result/img/iterations_training_PE.png) |
 
 
 ### Test
-In test section, we only show the result of 4x4 and 5x5 bin size, just like the original paper.
+In test section, we only show the result of 4x4 and 5x5 bin size, just like the original paper, but we have modified some wrong sequence types of the original paper.
 
 Because the training data which are randomly generated may not contain the specific test sequence types, leading to the model doesn't see that pattern, therefore, the result of the test may not perform as good as the training do.
 
 We guess the the training data in the original paper contain the specific test sequence types, thus, the test result of the the original paper is awesome, not like our experiments.
 
+<p align="center">
+<img src="img/test_result.jpg" alt="CNN for 5x5 bin size" height="40%" width="100%">
+</p>
 
 
+## Dynamic Demo Example
+####  Unit square 4x4 bin with type1 sequence 
+<p align="center">
+<img src="img/unit_square_4x4_result/img/test_type1.gif" alt="unit_square_4x4_type1" height="40%" width="80%">
+</p>
+
+####  Square 4x4 bin with type1 sequence 
+<p align="center">
+<img src="img/square_4x4_result/img/test_type3.gif" alt="square_4x4_type3" height="40%" width="80%">
+</p>
+
+####  Rectangular 4x4 bin with type2 sequence 
+<p align="center">
+<img src="img/rectangular_4x4_result/img/test_type2.gif" alt="rectangular_4x4_type2" height="40%" width="80%">
+</p>
+
+####  Unit square 5x5 bin with type 1 sequence 
+<p align="center">
+<img src="img/unit_square_5x5_result/img/test_type1.gif" alt="unit_square_5x5_type1" height="40%" width="80%">
+</p>
+
+####  Square 5x5 bin with type 3 sequence 
+<p align="center">
+<img src="img/square_5x5_result/img/test_type3.gif" alt="square_5x5_type3" height="40%" width="80%">
+</p>
+
+####  Rectangular 5x5 bin with type 3 sequence 
+<p align="center">
+<img src="img/rectangular_5x5_result/img/test_type3.gif" alt="rectangular_5x5_type3" height="40%" width="80%">
+</p>
 
 
 ## References
 * [Deep-Pack: A Vision-Based 2D Online Bin Packing Algorithm with Deep Reinforcement Learning](https://ieeexplore.ieee.org/document/8956393)
 
+* [Double DQN](https://hrl.boyuai.com/chapter/2/dqn%E6%94%B9%E8%BF%9B%E7%AE%97%E6%B3%95#83-double-dqn-%E4%BB%A3%E7%A0%81%E5%AE%9E%E8%B7%B5)
+
 * [TD3 github](https://github.com/sfujim/TD3)
 
 * [RainbowDQN github](https://github.com/Kaixhin/Rainbow)
+
