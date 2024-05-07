@@ -119,7 +119,7 @@ Because the training data which are randomly generated may not contain the speci
 We guess the the training data in the original paper contain the specific test sequence types, thus, the test result of the the original paper is awesome, not like our experiments.
 
 <p align="center">
-<img src="img/test_result.jpg" alt="CNN for 5x5 bin size" height="40%" width="100%">
+<img src="img/test_result.jpg" alt="test_result" height="40%" width="100%">
 </p>
 
 
