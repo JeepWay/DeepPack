@@ -60,7 +60,7 @@ class Agent():
     def update_target_net(self):
         self.target_net.load_state_dict(self.net.state_dict())
 
-    def save(self, path, name='model.pth'):
+    def save(self, path, name='model.pt'):
         torch.save(self.net.state_dict(), os.path.join(path, name))
 
     def train(self):

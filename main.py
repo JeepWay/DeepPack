@@ -14,21 +14,21 @@ import utils
 def preargparse():
     parser = argparse.ArgumentParser(description='This is a simple program to demonstrate argparse')
     # hyper-parameters mentioned in the paper
-    parser.add_argument("--bin_w", default=5, type=int, help="width of bin", choices=[3, 4, 5])
-    parser.add_argument("--bin_h", default=5, type=int, help="height of bin", choices=[3, 4, 5])
+    parser.add_argument("--bin_w", default=4, type=int, help="width of bin", choices=[3, 4, 5])
+    parser.add_argument("--bin_h", default=4, type=int, help="height of bin", choices=[3, 4, 5])
     parser.add_argument("--task", default="unit_square", type=str, help="task name", choices=["unit_square", "rectangular", "square"])
     parser.add_argument("--learning_rate", default=1e-3, type=int)
     parser.add_argument("--gamma", default=0.95, type=int)
     parser.add_argument("--mem_size", default=20000, type=int, help="replay buffer size")
     parser.add_argument("--K", default=2, type=int, help="coefficient of bonus PE reward for last step")
     parser.add_argument("--epsilon", default=1., type=float)
-    parser.add_argument("--iterations", default=1000, type=int, help="each iteration consists of w*h items", choices=[200000, 300000, 350000])
+    parser.add_argument("--iterations", default=200000, type=int, help="each iteration consists of w*h items", choices=[200000, 300000, 350000])
     # other hyper-parameters
     parser.add_argument("--seed", default=0, type=int)
     parser.add_argument("--learn_start", default=2000, type=int)
     parser.add_argument("--sync_freq", default=2000, type=int)
     parser.add_argument("--batch_size", default=64, type=int)
-    parser.add_argument("--no_action_reward", default=-5, type=int, choices=[-5, 0])
+    parser.add_argument("--no_action_reward", default=-5, type=int, choices=[-5])
     args = parser.parse_args()
     args.action_space = args.bin_w * args.bin_h + 1
     args.max_sequence = args.bin_w * args.bin_h
@@ -46,6 +46,21 @@ if __name__ == '__main__':
     print(date_string, dir_name)
     utils.setSeed(args.seed)
     utils.deleteLastOutput(dir_name)
+
+    ''' save hyper-parameters '''
+    with open(f"{dir_name}/hyperparameters.txt", "w") as f:
+        f.write(f"Hyper-parameters:\n")
+        for key, value in vars(args).items():
+            f.write(f"{key}: {value}\n")
+        f.write("args.epsilon -= (1/(args.iterations/1.8))\n")
+        f.write("lr_scheduler.ExponentialLR(self.optimizer, gamma=((1-(1/args.iterations))))\n")
+        if args.bin_w == 4:
+            f.write("self.conv1 = torch.nn.Conv2d(1, 16, kernel_size=(1,3), stride=1)\n")
+            f.write("self.conv2 = torch.nn.Conv2d(16, 32, kernel_size=(1,3), stride=1)\n")
+        if args.bin_w == 5:
+            f.write("self.conv1 = torch.nn.Conv2d(1, 16, kernel_size=(2,3), stride=1)\n")
+            f.write("self.conv2 = torch.nn.Conv2d(16, 32, kernel_size=(2,3), stride=1)\n")      
+        f.write("\n")
 
     replay = deque(maxlen=args.mem_size)
     agent = Agent(args)
@@ -104,8 +119,8 @@ if __name__ == '__main__':
                 elif (torch.sum(bin_state[x:x+width, y:y+height]) != (width * height)): # 判斷是否有重疊
                     #print(f"Overlap: action:{action}, x:{x}, y:{y}, width:{width}, height:{height}")
                     reward = -5
-                else:       # 合法動作
-                    # 更新 bin_state
+                else:  # legal action
+                    # update bin_state
                     bin_state[x:x+width, y:y+height] = 0
                     # 1 變 0，0 變 1，才能使用 scipy 的 label 函數來找出連通區域
                     state_np = (1 - bin_state).numpy()
@@ -122,10 +137,10 @@ if __name__ == '__main__':
                     top_left = cluster_indices.min(axis=0)
                     bottom_right = cluster_indices.max(axis=0)
                     bounding_box_size = (bottom_right[0] - top_left[0] + 1) * (bottom_right[1] - top_left[1] + 1)
-                    # 計算 compactness
+                    # compute compactness
                     compactness = cluster_size / bounding_box_size
                     reward = cluster_size * compactness
-            else: # 不放入 item
+            else: # don't place item
                 reward = -5
             # additional reward for last step
             if (sequence_count+1 == (args.max_sequence)) or (torch.sum(bin_state) == 0):
@@ -205,13 +220,6 @@ if __name__ == '__main__':
     np.savetxt(f"{dir_name}/train/PE_list.txt", PE_list, delimiter =", ", fmt ='%s')
     np.savetxt(f"{dir_name}/train/sequence_count_list.txt", sequence_count_list, delimiter =", ", fmt ='%s')
     np.savetxt(f"{dir_name}/train/action_list.txt", action_list, delimiter =", ", fmt ='%s')
-    
-    ''' save hyper-parameters '''
-    with open(f"{dir_name}/hyperparameters.txt", "w") as f:
-        f.write(f"Hyper-parameters:\n")
-        for key, value in vars(args).items():
-            f.write(f"{key}: {value}\n")
-        f.write("\n")
 
     # plot loss
     plt.figure(figsize=(10,7))
