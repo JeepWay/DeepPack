@@ -74,6 +74,8 @@ The all training and testing result and log will be placed in `(items_name)_(bin
 
 To reduce the size of this repository, we don't upload the result folders.
 
+If you want to see the traing log and testing result and dynamic demo gifs, you can run `.\install\install.bat` or other command lines, describes in `Installation` section, then you will get the whole information.
+
 ```bash
 ├── (itemsName)_(binW)x(binH)_result
 |   ├── img
@@ -82,6 +84,7 @@ To reduce the size of this repository, we don't upload the result folders.
 |   |   ├── test_type*.gif
 |   ├── test
 |   |   ├── log.txt
+|   |   ├── test_result.txt
 |   ├── train
 |   |   ├── log.txt
 |   ├── hyperparameter.txt
