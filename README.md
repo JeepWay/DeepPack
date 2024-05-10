@@ -62,6 +62,8 @@ If you want to see the training and testing data, you can run `generate_train.py
 
 ## Usage example
 * `run.bat`
+    * Modify this command `call D:\anaconda3\Scripts\activate.bat` in `run.bat`, if your anaconda3 path is not in D drive.
+    * Modify this command `call conda activate deeppack` in `run.bat`, if your anaconda3 env name D is not `deeppack`.
     * Execute the command in the `.bat` file, including training and testing parts.
 * `python main.py --task rectangular --bin_w 4 --bin_h 4 --iterations 300000` 
     * Execute to train the doubleDQN model.
@@ -81,7 +83,7 @@ If you want to see the traing log and testing result and dynamic demo gifs, you 
 |   ├── img
 |   |   ├── train_record.png
 |   |   ├── test_record.png
-|   |   ├── test_type*.gif
+|   |   ├── test_type*_iter*.gif
 |   ├── test
 |   |   ├── log.txt
 |   |   ├── test_result.txt
@@ -94,7 +96,7 @@ If you want to see the traing log and testing result and dynamic demo gifs, you 
 
 ## Experimental Results
 ### Train
-We only show the result of 4x4 and 5x5 bin size, just like the original paper. If you want to see the result of 3x3 bin size, you can generate 3x3 training data and then train it with suitable hyper-parameters.
+We only show the result of 4x4 and 5x5 bin size, just like the original paper. If you want to see the result of 3x3 bin size, you can generate 3x3 training data and then train it with suitable hyper-parameters and CNN settings.
 
 We plot the training curves with moving average (window size 50).
 
@@ -127,6 +129,8 @@ We guess the the training data in the original paper contain the specific test s
 
 
 ## Dynamic Demo Example
+### The <font color="#f00">red dot </font> indicates the placement location of the item.
+
 ###  Unit square 4x4 bin with type1 sequence 
 ```python
 'type1': [(16, (1, 1))]
@@ -345,7 +349,7 @@ items are all random, just like training
 ## References
 * [Deep-Pack: A Vision-Based 2D Online Bin Packing Algorithm with Deep Reinforcement Learning](https://ieeexplore.ieee.org/document/8956393)
 
-* [Compute cluster size and compactness]()
+* [Compute cluster size and compactness](https://hackmd.io/@ZhiWei0731/experiment-cluster-size)
 
 * [Double DQN](https://hrl.boyuai.com/chapter/2/dqn%E6%94%B9%E8%BF%9B%E7%AE%97%E6%B3%95#83-double-dqn-%E4%BB%A3%E7%A0%81%E5%AE%9E%E8%B7%B5)
 
