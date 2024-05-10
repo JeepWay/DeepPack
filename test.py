@@ -36,6 +36,21 @@ def preargparse():
     return args
 
 
+def plot_bin(iter, bin_list):
+    ''' plot bin images '''
+    for i in range(len(bin_list)):
+        bin_state, x, y, width, height = bin_list[i]
+        utils.bin2image(bin_state, x, y, item_w=width, item_h=height)
+        import os
+        if not os.path.isdir(f"{dir_name}/img/{args.sequence_type}_iter{iter}"):
+            os.mkdir(f"{dir_name}/img/{args.sequence_type}_iter{iter}")
+        plt.savefig(f"{dir_name}/img/{args.sequence_type}_iter{iter}/{i}.png")
+        plt.close()
+    ''' save bin images to gif '''
+    utils.images_to_gif(f"{dir_name}/img/{args.sequence_type}_iter{iter}", 
+                        f"{dir_name}/img/test_{args.sequence_type}_iter{iter}.gif")
+
+
 if __name__ == '__main__':
     begin_time = time.asctime(time.localtime(time.time()))
     start = time.time()
@@ -47,12 +62,12 @@ if __name__ == '__main__':
     agent.net.load_state_dict(torch.load(model_name))
     agent.eval()
 
-    step_rewards = []
-    iteration_rewards = []
+    step_rewards = []  # store rewards for each step
+    iteration_rewards = []  # store rewards for each iteration
     PE_list = []
     sequence_count_list = []
-    action_list = []
-    bin_list = []
+    action_list = []    
+    bin_list = [] # store bin state for plotting
 
     ''' read test data '''
     file = open(f"./data/test_{args.task}_{str(args.bin_w)}_{args.sequence_type}_{args.iterations}.txt",'r')
@@ -125,8 +140,8 @@ if __name__ == '__main__':
                 reward += args.K * PE
             step_rewards.append(reward)
             rewards += reward
-            if (iter==0):
-                bin_list.append((copy.deepcopy(bin_state), x, y, width, height))
+            # store bin state for plotting
+            bin_list.append((copy.deepcopy(bin_state), x, y, width, height))
 
             ''' get next item and state of next item '''
             if (iter * args.max_sequence + sequence_count + 1) == len(items):
@@ -152,6 +167,12 @@ if __name__ == '__main__':
             if (sequence_count == (args.max_sequence)) or (torch.sum(bin_state) == 0):
                 # compute packing efficiency
                 PE = torch.sum(1-bin_state) / (args.bin_w * args.bin_h)
+                # plot bin images
+                if (iter+1) in [1, 2, 3, 4, 5]:
+                    plot_bin(iter+1, bin_list)
+                    bin_list.clear()
+                else:
+                    bin_list.clear()
                 #print(f"iter: {iter}, sequence_count: {sequence_count}, PE: {PE:.3f} rewards: {rewards:.3f}, loss: {np.mean(step_losses[-sequence_count:]):.4f}")
                 iteration_rewards.append(rewards)
                 sequence_count_list.append(sequence_count)
@@ -199,21 +220,7 @@ if __name__ == '__main__':
     plt.ylabel("Packing Efficiency",fontsize=18)
     plt.savefig(f"{dir_name}/img/{args.sequence_type}_testing_PE.png", dpi=300)
     plt.close()
-
-    ''' plot bin images '''
-    for i in range(len(bin_list)):
-        bin_state, x, y, width, height = bin_list[i]
-        utils.bin2image(1-bin_state, x, y, item_w=width, item_h=height)
-        import os
-        if not os.path.isdir(f"{dir_name}/img/{args.sequence_type}"):
-            os.mkdir(f"{dir_name}/img/{args.sequence_type}")
-        plt.savefig(f"{dir_name}/img/{args.sequence_type}/{i}.png")
-        plt.close()
         
-    ''' save bin images to gif '''
-    utils.images_to_gif(f"{dir_name}/img/{args.sequence_type}", 
-                        f"{dir_name}/img/test_{args.sequence_type}.gif")
-
     ''' save testing info '''
     with open(f"{dir_name}/test/test_result.txt", "a") as f:
         f.write(f"Sequence type: {args.sequence_type}\n")
