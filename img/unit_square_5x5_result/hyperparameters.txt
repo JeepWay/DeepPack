@@ -16,7 +16,6 @@ no_action_reward: -5
 action_space: 26
 max_sequence: 25
 device: cuda
-
 args.epsilon -= (1/(args.iterations/1.8))
 self.scheduler = lr_scheduler.ExponentialLR(self.optimizer, gamma=((1-(1/args.iterations))))
 self.conv1 = torch.nn.Conv2d(1, 16, kernel_size=(2,3), stride=1)

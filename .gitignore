@@ -1,14 +1,14 @@
-__pycache__
-backup_result
+/__pycache__
+/backup_result
 /*_result
 try.py
 result.xlsx
 
-data/train_unit_*
-data/train_square_*
-data/train_rectangular_3_*
-data/train_rectangular_5_*
-data/test_unit_*
-data/test_square_*
-data/test_rectangular_3_*
-data/test_rectangular_5_*
+/data/train_unit_*
+/data/train_square_*
+/data/train_rectangular_3_*
+/data/train_rectangular_5_*
+/data/test_unit_*
+/data/test_square_*
+/data/test_rectangular_3_*
+/data/test_rectangular_5_*

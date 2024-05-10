@@ -122,44 +122,230 @@ Because the training data which are randomly generated may not contain the speci
 We guess the the training data in the original paper contain the specific test sequence types, thus, the test result of the the original paper is awesome, not like our experiments.
 
 <p align="center">
-<img src="img/test_result.jpg" alt="test_result" height="40%" width="100%">
+<img src="img/test_result.jpg" alt="test_result" width="100%">
 </p>
 
 
 ## Dynamic Demo Example
-####  Unit square 4x4 bin with type1 sequence 
-<p align="center">
-<img src="img/unit_square_4x4_result/img/test_type1.gif" alt="unit_square_4x4_type1" height="40%" width="80%">
-</p>
+###  Unit square 4x4 bin with type1 sequence 
+```python
+'type1': [(16, (1, 1))]
+```
+| iter1                                                               | iter2                                                               |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| ![type1_iter1](img/unit_square_4x4_result/img/test_type1_iter1.gif) | ![type1_iter2](img/unit_square_4x4_result/img/test_type1_iter2.gif) |
 
-####  Square 4x4 bin with type1 sequence 
-<p align="center">
-<img src="img/square_4x4_result/img/test_type3.gif" alt="square_4x4_type3" height="40%" width="80%">
-</p>
 
-####  Rectangular 4x4 bin with type2 sequence 
-<p align="center">
-<img src="img/rectangular_4x4_result/img/test_type2.gif" alt="rectangular_4x4_type2" height="40%" width="80%">
-</p>
+###  Square 4x4 bin with random sequence 
+```python
+items are all random, just like training
+```
+| iter1                                                               | iter2                                                               |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| ![random_iter1](img/square_4x4_result/img/test_random_iter1.gif) | ![random_iter2](img/square_4x4_result/img/test_random_iter2.gif) |
 
-####  Unit square 5x5 bin with type 1 sequence 
-<p align="center">
-<img src="img/unit_square_5x5_result/img/test_type1.gif" alt="unit_square_5x5_type1" height="40%" width="80%">
-</p>
+| iter3                                                               | iter4                                                               |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| ![random_iter3](img/square_4x4_result/img/test_random_iter3.gif) | ![random_iter4](img/square_4x4_result/img/test_random_iter4.gif) |
 
-####  Square 5x5 bin with type 3 sequence 
-<p align="center">
-<img src="img/square_5x5_result/img/test_type3.gif" alt="square_5x5_type3" height="40%" width="80%">
-</p>
 
-####  Rectangular 5x5 bin with type 3 sequence 
-<p align="center">
-<img src="img/rectangular_5x5_result/img/test_type3.gif" alt="rectangular_5x5_type3" height="40%" width="80%">
-</p>
+###  Square 4x4 bin with type1 sequence 
+```python
+'type1': [(1, (4, 4))]
+```
+| iter1                                                               | iter2                                                               |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| ![type1_iter1](img/square_4x4_result/img/test_type1_iter1.gif) | ![type1_iter2](img/square_4x4_result/img/test_type1_iter2.gif) |
+
+
+###  Square 4x4 bin with type2 sequence 
+```python
+'type2': [(1, (3, 3)), (7, (1, 1))]
+```
+| iter1                                                               | iter2                                                               |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| ![type2_iter1](img/square_4x4_result/img/test_type2_iter1.gif) | ![type2_iter2](img/square_4x4_result/img/test_type2_iter2.gif) |
+
+| iter3                                                               | iter4                                                               |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| ![type2_iter3](img/square_4x4_result/img/test_type2_iter3.gif) | ![type2_iter4](img/square_4x4_result/img/test_type2_iter4.gif) |
+
+
+###  Square 4x4 bin with type3 sequence 
+```python
+'type3': [(3, (2, 2)), (4, (1, 1))]
+```
+| iter1                                                               | iter2                                                               |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| ![type3_iter1](img/square_4x4_result/img/test_type3_iter1.gif) | ![type3_iter2](img/square_4x4_result/img/test_type3_iter2.gif) |
+
+| iter3                                                               | iter4                                                               |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| ![type3_iter3](img/square_4x4_result/img/test_type3_iter3.gif) | ![type3_iter4](img/square_4x4_result/img/test_type3_iter4.gif) |
+
+
+###  Rectangular 4x4 bin with random sequence 
+```python
+items are all random, just like training
+```
+| iter1                                                               | iter2                                                               |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| ![random_iter1](img/rectangular_4x4_result/img/test_random_iter1.gif) | ![random_iter2](img/rectangular_4x4_result/img/test_random_iter2.gif) |
+
+| iter3                                                               | iter4                                                               |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| ![random_iter3](img/rectangular_4x4_result/img/test_random_iter3.gif) | ![random_iter4](img/rectangular_4x4_result/img/test_random_iter4.gif) |
+
+
+###  Rectangular 4x4 bin with type1 sequence 
+```python
+'type1': [(1, (3, 2)), (1, (1, 4)), (1, (2, 2)), (1, (1, 2))]
+```
+| iter1                                                               | iter2                                                               |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| ![type1_iter1](img/rectangular_4x4_result/img/test_type1_iter1.gif) | ![type1_iter2](img/rectangular_4x4_result/img/test_type1_iter2.gif) |
+
+| iter3                                                               | iter4                                                               |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| ![type1_iter3](img/rectangular_4x4_result/img/test_type1_iter3.gif) | ![type1_iter4](img/rectangular_4x4_result/img/test_type1_iter4.gif) |
+
+
+###  Rectangular 4x4 bin with type2 sequence 
+```python
+'type2': [(1, (1, 1)), (1, (1, 3)), (1, (3, 1)), (1, (3, 3))]
+```
+| iter1                                                               | iter2                                                               |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| ![type2_iter1](img/rectangular_4x4_result/img/test_type2_iter1.gif) | ![type2_iter2](img/rectangular_4x4_result/img/test_type2_iter2.gif) |
+
+| iter3                                                               | iter4                                                               |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| ![type2_iter3](img/rectangular_4x4_result/img/test_type2_iter3.gif) | ![type2_iter4](img/rectangular_4x4_result/img/test_type2_iter4.gif) |
+
+
+###  Rectangular 4x4 bin with type3 sequence 
+```python
+'type3': [(1, (4, 2)), (2, (2, 2))]
+```
+| iter1                                                               | iter2                                                               |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| ![type3_iter1](img/rectangular_4x4_result/img/test_type3_iter1.gif) | ![type3_iter2](img/rectangular_4x4_result/img/test_type3_iter2.gif) |
+
+| iter3                                                               | iter4                                                               |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| ![type3_iter3](img/rectangular_4x4_result/img/test_type3_iter3.gif) | ![type3_iter4](img/rectangular_4x4_result/img/test_type3_iter4.gif) |
+
+
+###  Unit square 5x5 bin with type1 sequence 
+```python 
+'type1': [(25, (1, 1))]
+```
+| iter1                                                               | iter2                                                               |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| ![type1_iter1](img/unit_square_5x5_result/img/test_type1_iter1.gif) | ![type1_iter2](img/unit_square_5x5_result/img/test_type1_iter2.gif) |
+
+
+###  Square 5x5 bin with random sequence 
+```python
+items are all random, just like training
+```
+| iter1                                                               | iter2                                                               |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| ![type1_iter1](img/square_5x5_result/img/test_type1_iter1.gif) | ![type1_iter2](img/square_5x5_result/img/test_type1_iter2.gif) |
+
+
+###  Square 5x5 bin with type1 sequence 
+```python
+'type1': [(1, (5, 5))]
+```
+| iter1                                                               | iter2                                                               |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| ![type1_iter1](img/square_5x5_result/img/test_type1_iter1.gif) | ![type1_iter2](img/square_5x5_result/img/test_type1_iter2.gif) |
+
+
+###  Square 5x5 bin with type2 sequence 
+```python
+'type2': [(4, (2, 2)), (9, (1, 1))]
+```
+| iter1                                                               | iter2                                                               |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| ![type2_iter1](img/square_5x5_result/img/test_type2_iter1.gif) | ![type2_iter2](img/square_5x5_result/img/test_type2_iter2.gif) |
+
+| iter3                                                               | iter4                                                               |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| ![type2_iter3](img/square_5x5_result/img/test_type2_iter3.gif) | ![type2_iter4](img/square_5x5_result/img/test_type2_iter4.gif) |
+
+
+###  Square 5x5 bin with type3 sequence 
+```python
+'type3': [(1, (3, 3)), (3, (2, 2)), (4, (1, 1))]
+```
+| iter1                                                               | iter2                                                               |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| ![type3_iter1](img/square_5x5_result/img/test_type3_iter1.gif) | ![type3_iter2](img/square_5x5_result/img/test_type3_iter2.gif) |
+
+| iter3                                                               | iter4                                                               |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| ![type3_iter3](img/square_5x5_result/img/test_type3_iter3.gif) | ![type3_iter4](img/square_5x5_result/img/test_type3_iter4.gif) |
+
+
+###  Rectangular 5x5 bin with random sequence 
+```python
+items are all random, just like training
+```
+| iter1                                                               | iter2                                                               |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| ![random_iter1](img/rectangular_5x5_result/img/test_random_iter1.gif) | ![random_iter2](img/rectangular_5x5_result/img/test_random_iter2.gif) |
+
+| iter3                                                               | iter4                                                               |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| ![random_iter3](img/rectangular_5x5_result/img/test_random_iter3.gif) | ![random_iter4](img/rectangular_5x5_result/img/test_random_iter4.gif) |
+
+
+###  Rectangular 5x5 bin with type1 sequence
+```python
+'type1': [(4, (2, 2)), (1, (1, 4)), (1, (4, 1)), (1, (1, 1))]
+``` 
+| iter1                                                               | iter2                                                               |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| ![type1_iter1](img/rectangular_5x5_result/img/test_type1_iter1.gif) | ![type1_iter2](img/rectangular_5x5_result/img/test_type1_iter2.gif) |
+
+| iter3                                                               | iter4                                                               |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| ![type1_iter3](img/rectangular_5x5_result/img/test_type1_iter3.gif) | ![type1_iter4](img/rectangular_5x5_result/img/test_type1_iter4.gif) |
+
+
+###  Rectangular 5x5 bin with type2 sequence 
+```python
+'type2': [(1, (2, 5)), (1, (3, 3)), (1, (3, 2))]
+```
+| iter1                                                               | iter2                                                               |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| ![type2_iter1](img/rectangular_5x5_result/img/test_type2_iter1.gif) | ![type2_iter2](img/rectangular_5x5_result/img/test_type2_iter2.gif) |
+
+| iter3                                                               | iter4                                                               |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| ![type2_iter3](img/rectangular_5x5_result/img/test_type2_iter3.gif) | ![type2_iter4](img/rectangular_5x5_result/img/test_type2_iter4.gif) |
+
+
+###  Rectangular 5x5 bin with type3 sequence 
+```python
+'type3': [(1, (4, 4)), (1, (1, 4)), (1, (4, 1)), (1, (1, 1))]
+```
+| iter1                                                               | iter2                                                               |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| ![type3_iter1](img/rectangular_5x5_result/img/test_type3_iter1.gif) | ![type3_iter2](img/rectangular_5x5_result/img/test_type3_iter2.gif) |
+
+| iter3                                                               | iter4                                                               |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| ![type3_iter3](img/rectangular_5x5_result/img/test_type3_iter3.gif) | ![type3_iter4](img/rectangular_5x5_result/img/test_type3_iter4.gif) |
+
 
 
 ## References
 * [Deep-Pack: A Vision-Based 2D Online Bin Packing Algorithm with Deep Reinforcement Learning](https://ieeexplore.ieee.org/document/8956393)
+
+* [Compute cluster size and compactness]()
 
 * [Double DQN](https://hrl.boyuai.com/chapter/2/dqn%E6%94%B9%E8%BF%9B%E7%AE%97%E6%B3%95#83-double-dqn-%E4%BB%A3%E7%A0%81%E5%AE%9E%E8%B7%B5)
 
