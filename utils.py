@@ -62,7 +62,7 @@ def moving_average(lst, move):
 
 def bin2image(state, x, y, item_w, item_h):
     import matplotlib.pyplot as plt
-    plt.imshow(state, cmap='gray', origin='upper')
+    plt.imshow(state, cmap='gray', origin='upper', vmin=0, vmax=1)
     plt.title(f'{state.shape[0]}x{state.shape[1]} bin', fontsize=20)
     plt.xlabel('height', fontsize=16)
     plt.ylabel('width', fontsize=16)
